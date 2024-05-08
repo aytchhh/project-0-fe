@@ -1,9 +1,9 @@
-a {
+header a {
   font-weight: 500;
   color: #ff4f4f;
   text-decoration: inherit;
 }
-a:hover {
+header a:hover {
   color: #ff0000;
 }
 
@@ -43,8 +43,11 @@ button:focus-visible {
   line-height: 1.3;
 }
 
+.article-card:hover {
+  background-color: rgb(203, 203, 203);
+}
+
 .vote-span {
-  
   font-size: medium;
   width: 170px;
   border-radius: 30px;
@@ -55,3 +58,17 @@ button:focus-visible {
 
 .up-button:hover { color: #ff0000; }
 .down-button:hover { color: #646cff; }
+
+.single-article {
+  text-align: center;
+}
+
+.article-comments {
+  text-align: left;
+}
+
+.comment-card {
+  border: 1px solid;
+  margin: 30px 0;
+  padding-left: 10px;
+}
