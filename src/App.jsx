@@ -6,11 +6,11 @@ import './App.css'
 
 function App() {
 
-
   return (
     <>
       <Routes>
-        <Route path="/" element={<ArticlesList />} />
+        <Route path='/' element={ <ArticlesList />} />
+        <Route path='/:article_id' element={ <SingleArticle />} />
       </Routes>
     </>
   )

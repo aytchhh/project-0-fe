@@ -1,5 +1,6 @@
 
 function ArticleCard({ article }) {
+
     return (
         <div className="article-card">
             <h2>{article.title}</h2>
