@@ -23,4 +23,11 @@ export function getCommentsById(article_id) {
         .then((res) => {return res.data.comments})
 }
 
+export function patchArticleById(article_id, vote) {
+
+    return newsApi
+        .patch(`/articles/${article_id}`, {inc_votes: vote})
+        .then((res)=>{return res.data.article})
+}
+
 export default getArticles;

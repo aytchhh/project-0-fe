@@ -1,12 +1,11 @@
 import Header from './Header'
 import ArticleCard from './ArticleCard'
 import getArticles from '../../api'
-import BounceLoader from 'react-spinners/BounceLoader'
+import SpinnerUI from './SpinnerUI'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
-function ArticlesList() {
+function ArticlesList({upVoted, setUpvoted, downVoted, setDownvoted, voteChange, setVoteChange}) {
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -21,7 +20,7 @@ function ArticlesList() {
     }, [])
 
     const handleChange = ()=>{
-
+        // change category
     }
 
     return (
@@ -35,19 +34,21 @@ function ArticlesList() {
                 <option value="">3</option>
             </select>
 
-            {isLoading ? <BounceLoader 
-                color='#36d7b7'
-                cssOverride={{
-                    margin: "30vh auto"
-                }} /> 
-            :
+            {isLoading ? <SpinnerUI /> :
             <ul>
                 {
                     articles.map((article)=>{
                         return (
-                        <Link to={`/${article.article_id}`}  key={article.article_id}>
-                            <ArticleCard article={article} />
-                        </Link>
+                            <ArticleCard 
+                                key={article.article_id}
+                                article={article}
+                                upVoted={upVoted}
+                                setUpvoted={setUpvoted}
+                                downVoted={downVoted}
+                                setDownvoted={setDownvoted}
+                                voteChange={voteChange}
+                                setVoteChange={setVoteChange}
+                            />
                         )
                     })
                 }
