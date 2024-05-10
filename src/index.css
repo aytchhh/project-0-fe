@@ -16,6 +16,14 @@ header {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 0
+}
+
+.avatar {
+  border: 1px solid;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
 }
 
 button {
@@ -59,8 +67,8 @@ button:focus-visible {
   display: flex;
 }
 
-.up-button:hover { color: #ff0000; }
-.down-button:hover:not([disabled]) { color: #646cff; }
+.up-button:hover { text-shadow: 1px 0 5px #ff0000, 0 0 1em #ff0000, 0 0 0.2em #ff0000 }
+.down-button:hover:not([disabled]) { text-shadow: 1px 0 5px #646cff, 0 0 1em #646cff, 0 0 0.2em #646cff}
 .up-voted { color: #ff0000 }
 .down-voted { color: #646cff}
 
