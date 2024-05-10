@@ -5,7 +5,7 @@ import SpinnerUI from './SpinnerUI'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-function ArticlesList({upVoted, setUpvoted, downVoted, setDownvoted, voteChange, setVoteChange}) {
+function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -25,7 +25,14 @@ function ArticlesList({upVoted, setUpvoted, downVoted, setDownvoted, voteChange,
 
     return (
         <>
-            <Header />
+            <Header 
+                login={login}
+                setLogin={setLogin}
+                showForm={showForm}
+                setShowForm={setShowForm}
+                user={user}
+                setUser={setUser}
+            />
 
             <label>Article Category: </label>
             <select name="categories" id="category-select" onChange={handleChange}>
@@ -42,12 +49,6 @@ function ArticlesList({upVoted, setUpvoted, downVoted, setDownvoted, voteChange,
                             <ArticleCard 
                                 key={article.article_id}
                                 article={article}
-                                upVoted={upVoted}
-                                setUpvoted={setUpvoted}
-                                downVoted={downVoted}
-                                setDownvoted={setDownvoted}
-                                voteChange={voteChange}
-                                setVoteChange={setVoteChange}
                             />
                         )
                     })
