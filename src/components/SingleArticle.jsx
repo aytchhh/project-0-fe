@@ -16,8 +16,6 @@ function SingleArticle({upVoted, setUpvoted, downVoted, setDownvoted, login, set
     const [article, setArticle] = useState({})
     const [comments, setComments] = useState([])
     const [commentBody, setCommentBody] = useState('')
-    const [error, setError] = useState(null)
-    const [showAlert, setShowAlert] = useState(true)
 
     useEffect(()=>{
         setArticleLoading(true)
@@ -28,14 +26,14 @@ function SingleArticle({upVoted, setUpvoted, downVoted, setDownvoted, login, set
                 setArticle(data)
                 setArticleLoading(false)
             })
-            .catch((err)=>{console.log(err)})
+            .catch((err)=>{window.alert(err.response.data.message)})
         
         getCommentsById(article_id)
             .then((data)=>{
                 setComments(data)
                 setCommentsLoading(false)
             })
-            .catch((err)=>{console.log(err)})
+            .catch((err)=>{window.alert(err.response.data.message)})
     }, [article_id])
 
     const handleSubmit = (e)=>{
@@ -45,15 +43,19 @@ function SingleArticle({upVoted, setUpvoted, downVoted, setDownvoted, login, set
             postCommentByArticleId(article_id, user.username, commentBody)
                 .then((data)=>{
                     setCommentBody('')
-                    setComments([...comments, data])
-                
+                    setComments([data, ...comments])
+                    setTimeout(()=>{
+                        window.alert('Comment Posted!')
+                    }, 400)
                 })
                 .catch((err)=>{
-                    console.log(err)
-                    setError(err)
-                })
-                
+                    window.alert(err.response.data.message)
+                }) 
         }
+    }
+
+    const updateComments = (comment_id)=>{
+        setComments(comments.filter((comment)=>comment.comment_id!==comment_id))
     }
 
     return (
@@ -92,7 +94,7 @@ function SingleArticle({upVoted, setUpvoted, downVoted, setDownvoted, login, set
                     <section className='article-comments'>
                         {
                             comments.map((comment)=>{
-                                return <CommentCard key={comment.comment_id} comment={comment}/>
+                                return <CommentCard key={comment.comment_id} comment={comment} user={user} updateComments={updateComments}/>
                             })
                         }
                     </section>
@@ -114,10 +116,6 @@ function SingleArticle({upVoted, setUpvoted, downVoted, setDownvoted, login, set
                         showForm={true}
                         setShowForm={setShowForm}
                     />}
-
-                    {
-                        error ? <p>{error.response.data.message}</p> : null
-                    }
                 </>
             }
         </>

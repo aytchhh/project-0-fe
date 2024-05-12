@@ -1,11 +1,9 @@
 import { useState } from "react"
 import { patchArticleById } from "../../api"
 import LoginForm from "./LoginForm"
-import { Alert } from "react-bootstrap"
 
 function VoteCard({article, upVoted, setUpvoted, downVoted, setDownvoted, login, setLogin, showForm, setShowForm, user, setUser}) {
     const [voteCount, setVoteCount] = useState(article.votes)
-    const [error, setError] = useState(null)
 
     const handleVote = (vote)=>{
         if (!login) setShowForm(true)
@@ -30,7 +28,7 @@ function VoteCard({article, upVoted, setUpvoted, downVoted, setDownvoted, login,
                     setVoteCount(data.votes)
                 })
                 .catch((err)=>{
-                    setError(err)
+                    window.alert(err.response.data.message)
                     setVoteCount(article.votes);
                     setUpvoted(false)
                     setDownvoted(false)
@@ -54,7 +52,6 @@ function VoteCard({article, upVoted, setUpvoted, downVoted, setDownvoted, login,
             </p>
             <button className= {downVoted ? "down-voted" : "down-button"} onClick={()=>handleVote(-1)} disabled={!downVoted && article.votes === 0}>&#x25BC;</button>
         </span>
-        // error message to be added
     )
 }
 

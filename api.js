@@ -40,8 +40,14 @@ export function getUserByUsername(username) {
 export function postCommentByArticleId(article_id, username, body) {
 
     return newsApi
-        .post(`/api/articles/${article_id}/comments`, {username: username, body: body})
+        .post(`/articles/${article_id}/comments`, {username: username, body: body})
         .then((res)=>{return res.data.comment})
+}
+
+export function deleteCommentById(comment_id) {
+    
+    return newsApi
+        .delete(`/comments/${comment_id}`)
 }
 
 export default getArticles;
