@@ -1,5 +1,5 @@
 @media (max-width: 992px) {
-  .article-card img{
+  .article-card img, .single-article img{
     width: 70%;
     height: auto;
   }
