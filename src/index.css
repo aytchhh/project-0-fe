@@ -19,6 +19,8 @@ h1 {
   margin: 0
 }
 
+.text-muted { font-size: small; }
+
 .avatar {
   border: 1px solid;
   border-radius: 50%;

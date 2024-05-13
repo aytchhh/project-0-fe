@@ -57,6 +57,9 @@ function LoginForm({ login, setLogin, showForm, setShowForm, user, setUser }) {
                             onChange={(e)=>{setUsername(e.target.value); setValidated(true)}}
                             isInvalid={error !== null}
                         />
+                        <Form.Text className="text-muted">
+                            &nbsp;&nbsp;&nbsp; tickle122 &nbsp; grumpy19 &nbsp; happyamy2016 &nbsp; cooljmessy &nbsp; weegembump &nbsp; jessjelly
+                        </Form.Text>
                         <FormControl.Feedback type="invalid">{error}</FormControl.Feedback>
                         
                     </Form>

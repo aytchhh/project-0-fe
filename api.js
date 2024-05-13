@@ -2,11 +2,22 @@ import axios from "axios";
 
 const newsApi = axios.create({ baseURL: "https://nc-news-hwajay.onrender.com/api" });
 
-function getArticles() {
+function getArticles(topic) {
 
     return newsApi
-        .get('/articles')
+        .get('/articles', {
+            params: {
+                topic: topic
+            }
+        })
         .then((res)=>{return res.data.articles})
+}
+
+export function getTopics() {
+
+    return newsApi
+        .get('/topics')
+        .then((res)=>{return res.data.topics})
 }
 
 export function getArticleById(article_id) {
