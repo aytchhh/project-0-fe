@@ -1,26 +1,37 @@
 import Header from './Header'
 import ArticleCard from './ArticleCard'
-import getArticles from '../../api'
+import getArticles, { getTopics } from '../../api'
 import SpinnerUI from './SpinnerUI'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect} from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [topics, setTopics] = useState([])
+    const [searchParams, setSearchParams] = useSearchParams()
+    const topicQuery = searchParams.get('topic')
+    
+    getTopics()
+        .then((arr)=>{
+        setTopics(arr.map((topic)=>topic.slug))
+        })
+        .catch((err)=>{window.alert(err.response.data.message)})
 
     useEffect(()=>{
         setIsLoading(true)
-        getArticles()
-            .then((data)=>{
-                setArticles(data)
-                setIsLoading(false)
-            })
-            .catch((err)=>{console.log(err)})
-    }, [])
-
-    const handleChange = ()=>{
-        // change category
+        getArticles(topicQuery)
+        .then((data)=>{
+            setArticles(data)
+            setIsLoading(false)
+        })
+        .catch((err)=>{window.alert(err.response.data.message)})
+    }, [topicQuery])
+    
+    const setCategory = (e)=>{
+        const newParams = new URLSearchParams(searchParams);
+        newParams.set('topic', e.target.value);
+        setSearchParams(newParams);
     }
 
     return (
@@ -34,11 +45,11 @@ function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
                 setUser={setUser}
             />
 
-            <label>Article Category: </label>
-            <select name="categories" id="category-select" onChange={handleChange}>
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
+            <label>Article Category: &nbsp;</label>
+            <select name="categories" id="category-select" onChange={setCategory}>
+                {
+                    [<option key={0} value={''}>all</option>, ...topics.map((topic, index)=><option key={index + 1} value={topic}>{topic}</option>)]
+                }
             </select>
 
             {isLoading ? <SpinnerUI /> :
