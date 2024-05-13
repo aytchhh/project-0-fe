@@ -6,6 +6,11 @@ import { Offcanvas, OffcanvasHeader } from "react-bootstrap";
 function Header({login, setLogin, showForm, setShowForm, user, setUser}) {
     const [showOffCanvas, setShowOffCanvas] = useState(false)
 
+    const handleLogout = ()=>{
+        setUser({})
+        setLogin(false)
+    }
+
     return ( 
         <header>
             <p>nav?</p>
@@ -21,7 +26,7 @@ function Header({login, setLogin, showForm, setShowForm, user, setUser}) {
                         <OffcanvasHeader closeButton>
                             to be added...
                         </OffcanvasHeader>
-                        <button className="Logout-trigger" onClick={()=>{setLogin(false)}}>Log Out</button>
+                        <button className="Logout-trigger" onClick={handleLogout}>Log out</button>
                     </Offcanvas>
                 </>
 
