@@ -2,12 +2,14 @@ import axios from "axios";
 
 const newsApi = axios.create({ baseURL: "https://nc-news-hwajay.onrender.com/api" });
 
-function getArticles(topic) {
+function getArticles(topic, sort_by, order) {
 
     return newsApi
         .get('/articles', {
             params: {
-                topic: topic
+                topic: topic,
+                sort_by: sort_by,
+                order: order
             }
         })
         .then((res)=>{return res.data.articles})
