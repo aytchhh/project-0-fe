@@ -60,28 +60,27 @@ function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
                 setUser={setUser}
             />
 
-            <label>Topic: &nbsp;</label>
-            <select name="topic" id="topic-select" value={topicQuery || ''} onChange={setCategory}>
-                {
-                    [<option key={0} value={''}>all</option>, ...topics.map((topic, index)=><option key={index + 1} value={topic}>{topic}</option>)]
-                }
-            </select>
-            <br/>
+            <div className='query-select'>
+                <label>Topic: </label>
+                <select name="topic" id="topic-select" value={topicQuery || ''} onChange={setCategory}>
+                    {
+                        [<option key={0} value={''}>all</option>, ...topics.map((topic, index)=><option key={index + 1} value={topic}>{topic}</option>)]
+                    }
+                </select>
 
-            <label>Sort By: &nbsp;</label>
-            <select name='sort-by' id='sort-by-select' value={sortQuery || 'created_at'} onChange={setSort}>
-                <option value={'created_at'}>Date</option>
-                <option value={'comment_count'}>Comments Count</option>
-                <option value={'votes'}>Votes</option>
-            </select>
-            <br/>
+                <label>Sort By: </label>
+                <select name='sort-by' id='sort-by-select' value={sortQuery || 'created_at'} onChange={setSort}>
+                    <option value={'created_at'}>Date</option>
+                    <option value={'comment_count'}>Comments Count</option>
+                    <option value={'votes'}>Votes</option>
+                </select>
             
-            <label>Order: &nbsp;</label>
-            <select name='order' id='order-by-select' value={orderQuery || 'DESC'} onChange={setOrder}>
-                <option value={'DESC'}>High to Low</option>
-                <option value={'ASC'}>Low to High</option>
-            </select>
-
+                <label>Order: </label>
+                <select name='order' id='order-by-select' value={orderQuery || 'DESC'} onChange={setOrder}>
+                    <option value={'DESC'}>High to Low</option>
+                    <option value={'ASC'}>Low to High</option>
+                </select>
+            </div>
  
             {isLoading ? <SpinnerUI /> :
             <ul>

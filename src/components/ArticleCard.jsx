@@ -11,7 +11,7 @@ function ArticleCard({ article }) {
             {/* to be refactored 👇 */} 
             <p>created at: {article.created_at}</p>
             <Link to={`/${article.article_id}`}>
-                <img src={article.article_img_url}/>
+                <img src={article.article_img_url max-width}/>
             </Link>
             <br/>
             <p>{article.votes} votes</p>
