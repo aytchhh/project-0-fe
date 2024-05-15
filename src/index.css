@@ -3,10 +3,20 @@
     width: 70%;
     height: auto;
   }
+
+  .query-select {
+    font-size: 0.5em;
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+  }
 }
 
+@media (min-width: 992px) { .nav {display: none;} }
+
 header a {
-  font-weight: 500;
+  font-family: MarkPro-Bold;
   color: #ff4f4f;
   text-decoration: inherit;
 }
@@ -23,19 +33,40 @@ header {
   border-bottom-style: ridge;
 }
 
+.header-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .avatar:hover {
   cursor: pointer;
 }
 
+.profile-canvas {
+  text-align: center;
+}
+
+.profile-avatar { 
+  margin: 50px auto;
+  border: 1px solid;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.logout-trigger:hover {background-color: #ff0000;}
+
 h1 {
-  font-size: 3.2em;
+  font-size: 2em;
   line-height: 1.1;
-  margin: 0 auto;
+
 }
 
 .query-select {
   text-align: right;
-  margin-right: 20px;
+  margin: 20px 20px 0 20px;
 }
 
 .query-select label {
@@ -121,4 +152,13 @@ button:focus-visible {
 
 .delete-comment-button:hover {
   background-color: #ff0000;
+}
+
+.comment-box {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
 }
