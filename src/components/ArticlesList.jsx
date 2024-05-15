@@ -81,6 +81,8 @@ function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
                     <option value={'ASC'}>Low to High</option>
                 </select>
             </div>
+
+            <hr/>
  
             {isLoading ? <SpinnerUI /> :
             <ul>
