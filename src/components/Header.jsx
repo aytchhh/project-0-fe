@@ -12,7 +12,7 @@ function Header({login, setLogin, showForm, setShowForm, user, setUser}) {
     }
 
     return ( 
-        <header>
+        <header id="header">
             <div className="header-wrapper">
                 <Navbar expand="lg" className="nav">
                     <Container fluid>
