@@ -50,7 +50,7 @@ function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
     }
 
     return (
-        <>
+        <div className='article-list'>
             <Header 
                 login={login}
                 setLogin={setLogin}
@@ -60,7 +60,7 @@ function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
                 setUser={setUser}
             />
 
-            <div className='query-select'>
+            <div className='query-select' id='sidebar'>
                 <label>Topic: </label>
                 <select name="topic" id="topic-select" value={topicQuery || ''} onChange={setCategory}>
                     {
@@ -81,11 +81,9 @@ function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
                     <option value={'ASC'}>Low to High</option>
                 </select>
             </div>
-
-            <hr/>
  
             {isLoading ? <SpinnerUI /> :
-            <ul>
+            <ul id='contents'>
                 {
                     articles.map((article)=>{
                         return (
@@ -98,7 +96,7 @@ function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
                 }
             </ul>
             }
-        </>
+        </div>
     )
 }
 

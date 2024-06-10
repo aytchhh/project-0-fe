@@ -3,17 +3,56 @@
     width: 70%;
     height: auto;
   }
-
-  .query-select {
-    font-size: 0.5em;
-    display: inline-block;
-    justify-content: center;
-    text-align: center;
-    margin: 0 auto;
-  }
 }
 
 @media (min-width: 992px) { .nav {display: none;} }
+
+.article-list {
+  display: grid;
+  width: 99vw;
+  height: 99vh;
+  grid-template-columns: 18vw auto auto;
+  grid-template-rows: 10vh auto auto;
+  grid-template-areas: 
+  "header header header"
+  "sidebar contents contents"
+  ;
+}
+
+#header {
+  grid-area: header; 
+  /* position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; */
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 0 0 0.1rem 0;
+  margin: 0;
+  z-index: 1000;
+}
+#sidebar {
+  grid-area: sidebar;
+  /* position: fixed; */
+  top: 10vh;
+  height: calc(100vh - 10vh);
+  overflow-y: auto;
+  background-color: white;
+  /* left: 0; */
+  /* bottom: 0; */
+  border-color: black;
+  border-style: solid;
+  border-width: 0 0.1rem 0 0; 
+  margin: 0;
+  z-index: 999;
+}
+#contents {
+  grid-area: contents;
+  margin-left: 18vw; 
+  margin-top: 10vh; 
+  overflow: auto; 
+}
 
 header a {
   font-family: MarkPro-Bold;
@@ -30,7 +69,6 @@ header {
   justify-content: space-between;
   margin: 10px;
   padding: 10px;
-  border-bottom-style: ridge;
 }
 
 .header-wrapper {
@@ -65,16 +103,17 @@ h1 {
 }
 
 .query-select {
-  text-align: right;
-  margin: 20px 20px 0 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .query-select label {
   display: inline-block;
   width: 70px;
-  text-align: right;
-  margin-right: 10px;/
+  text-align: left;
 }
+.query-select select {margin-bottom: 30px;}
 
 .login-trigger:hover {
   color: white;

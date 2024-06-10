@@ -68,6 +68,7 @@ function SingleArticle({upVoted, setUpvoted, downVoted, setDownvoted, login, set
                 user={user}
                 setUser={setUser}
             />
+            <hr/>
             {
                 articleLoading || commentsLoading ? <SpinnerUI /> :
                 <>
