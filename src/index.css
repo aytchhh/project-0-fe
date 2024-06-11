@@ -21,10 +21,10 @@
 
 #header {
   grid-area: header; 
-  /* position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0; */
+  right: 0;
   background-color: white;
   border-color: black;
   border-style: solid;
@@ -34,8 +34,8 @@
 }
 #sidebar {
   grid-area: sidebar;
-  /* position: fixed; */
-  top: 10vh;
+  position: fixed;
+  top: 8vh;
   height: calc(100vh - 10vh);
   overflow-y: auto;
   background-color: white;
@@ -49,9 +49,6 @@
 }
 #contents {
   grid-area: contents;
-  margin-left: 18vw; 
-  margin-top: 10vh; 
-  overflow: auto; 
 }
 
 header a {
