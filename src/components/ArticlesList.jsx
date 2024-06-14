@@ -4,6 +4,7 @@ import getArticles, { getTopics } from '../../api'
 import SpinnerUI from './SpinnerUI'
 import { useState, useEffect} from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { Accordion, Nav, Navbar, Container, Row, Col } from 'react-bootstrap';
 
 function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
     const [articles, setArticles] = useState([])
@@ -50,53 +51,70 @@ function ArticlesList({login, setLogin, showForm, setShowForm, user, setUser}) {
     }
 
     return (
-        <div className='article-list'>
-            <Header 
-                login={login}
-                setLogin={setLogin}
-                showForm={showForm}
-                setShowForm={setShowForm}
-                user={user}
-                setUser={setUser}
-            />
+        <Container fluid className="articles">
 
-            <div className='query-select' id='sidebar'>
-                <label>Topic: </label>
-                <select name="topic" id="topic-select" value={topicQuery || ''} onChange={setCategory}>
-                    {
-                        [<option key={0} value={''}>all</option>, ...topics.map((topic, index)=><option key={index + 1} value={topic}>{topic}</option>)]
+            <Row>
+                <Col className='header-col'>
+                <Header 
+                    login={login}
+                    setLogin={setLogin}
+                    showForm={showForm}
+                    setShowForm={setShowForm}
+                    user={user}
+                    setUser={setUser}
+                />
+                </Col>
+            </Row>
+
+            <Row>
+                <Col sm={12} md={3} className="sidebar-col">
+                <div id='sidebar' className='sidebar'>
+                    {/* refactor here */}
+                        <div className='query-select'>
+                            <label>Topic: </label>
+                            <select name="topic" id="topic-select" value={topicQuery || ''} onChange={setCategory}>
+                                {
+                                    [<option key={0} value={''}>all</option>, ...topics.map((topic, index)=><option key={index + 1} value={topic}>{topic}</option>)]
+                                }
+                            </select>
+
+                            <label>Sort By: </label>
+                            <select name='sort-by' id='sort-by-select' value={sortQuery || 'created_at'} onChange={setSort}>
+                                <option value={'created_at'}>Date</option>
+                                <option value={'comment_count'}>Comments Count</option>
+                                <option value={'votes'}>Votes</option>
+                            </select>
+                        
+                            <label>Order: </label>
+                            <select name='order' id='order-by-select' value={orderQuery || 'DESC'} onChange={setOrder}>
+                                <option value={'DESC'}>High to Low</option>
+                                <option value={'ASC'}>Low to High</option>
+                            </select>
+                        </div>
+                </div>
+                </Col>
+
+                <Col md={12} lg={9} className="content-col">
+                <div className="content">
+                    {isLoading ? <SpinnerUI /> :
+                        <ul id='contents'>
+                            {
+                                articles.map((article)=>{
+                                    return (
+                                        <ArticleCard 
+                                            key={article.article_id}
+                                            article={article}
+                                        />
+                                    )
+                                })
+                            }
+                        </ul>
                     }
-                </select>
+                </div>
+                </Col>
+            </Row>
 
-                <label>Sort By: </label>
-                <select name='sort-by' id='sort-by-select' value={sortQuery || 'created_at'} onChange={setSort}>
-                    <option value={'created_at'}>Date</option>
-                    <option value={'comment_count'}>Comments Count</option>
-                    <option value={'votes'}>Votes</option>
-                </select>
-            
-                <label>Order: </label>
-                <select name='order' id='order-by-select' value={orderQuery || 'DESC'} onChange={setOrder}>
-                    <option value={'DESC'}>High to Low</option>
-                    <option value={'ASC'}>Low to High</option>
-                </select>
-            </div>
- 
-            {isLoading ? <SpinnerUI /> :
-            <ul id='contents'>
-                {
-                    articles.map((article)=>{
-                        return (
-                            <ArticleCard 
-                                key={article.article_id}
-                                article={article}
-                            />
-                        )
-                    })
-                }
-            </ul>
-            }
-        </div>
+        </Container>
     )
 }
 

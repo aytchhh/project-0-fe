@@ -3,72 +3,57 @@
     width: 70%;
     height: auto;
   }
+  .sidebar {display: none;}
 }
 
-@media (min-width: 992px) { .nav {display: none;} }
+@media (min-width: 992px) { .nav {display: none;}}
 
-.article-list {
-  display: grid;
-  width: 99vw;
-  height: 99vh;
-  grid-template-columns: 18vw auto auto;
-  grid-template-rows: 10vh auto auto;
-  grid-template-areas: 
-  "header header header"
-  "sidebar contents contents"
-  ;
+@media (max-width: 576px) { 
+  .canvas {
+    width: 70%;
+    max-width: 300px;
+  }
 }
 
-#header {
-  grid-area: header; 
-  /* position: fixed;
+.sidebar-col {
+  border: 1px solid black;
+  border-width: 0 0.1rem 0 0;
+}
+.sidebar {
+  position: fixed;
+  /* 👇❓ */
+  top: 20vh;
+  /*
+    height: calc(100vh - 10vh);
+    overflow-y: auto;
+    margin: 0;
+    z-index: 999;
+  */
+}
+
+/* 👇❓ */
+.content { margin-top: 10vh;}
+
+.header {
+  border: 1px solid black;
+  border-width: 0 0 0.1rem 0;
+  background-color: white;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0; */
-  background-color: white;
-  border-color: black;
-  border-style: solid;
-  border-width: 0 0 0.1rem 0;
+  right: 0;
   margin: 0;
+  padding: 10px;
   z-index: 1000;
 }
-#sidebar {
-  grid-area: sidebar;
-  /* position: fixed; */
-  top: 10vh;
-  height: calc(100vh - 10vh);
-  overflow-y: auto;
-  background-color: white;
-  /* left: 0; */
-  /* bottom: 0; */
-  border-color: black;
-  border-style: solid;
-  border-width: 0 0.1rem 0 0; 
-  margin: 0;
-  z-index: 999;
-}
-#contents {
-  grid-area: contents;
-  margin-left: 18vw; 
-  margin-top: 10vh; 
-  overflow: auto; 
-}
 
-header a {
+.header a {
   font-family: MarkPro-Bold;
   color: #ff4f4f;
   text-decoration: inherit;
 }
-header a:hover {
+.header a:hover {
   color: #ff0000;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px;
-  padding: 10px;
 }
 
 .header-wrapper {
@@ -82,7 +67,7 @@ header {
   cursor: pointer;
 }
 
-.profile-canvas {
+#profile-canvas {
   text-align: center;
 }
 
@@ -99,7 +84,6 @@ header {
 h1 {
   font-size: 2em;
   line-height: 1.1;
-
 }
 
 .query-select {

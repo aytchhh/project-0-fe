@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import { useState } from "react";
-import { Navbar, Container, NavbarToggle, NavbarOffcanvas, Offcanvas} from "react-bootstrap";
+import { Navbar, NavbarToggle, NavbarOffcanvas, Offcanvas} from "react-bootstrap";
 
 function Header({login, setLogin, showForm, setShowForm, user, setUser}) {
     const [showOffCanvas, setShowOffCanvas] = useState(false)
@@ -12,15 +12,13 @@ function Header({login, setLogin, showForm, setShowForm, user, setUser}) {
     }
 
     return ( 
-        <header id="header">
+        <header className="header">
             <div className="header-wrapper">
                 <Navbar expand="lg" className="nav">
-                    <Container fluid>
                     <NavbarToggle aria-controls="offcanvasNavbar-expand-lg"/>
-                    <NavbarOffcanvas id="offcanvasNavbar-expand-lg" aria-labelledby="offcanvasNavbarLabel-expand-lg" placement="start" scroll={true}>
+                    <NavbarOffcanvas className='canvas' id="offcanvasNavbar-expand-lg" aria-labelledby="offcanvasNavbarLabel-expand-lg" placement="start" scroll={true}>
                         <p>to be added...</p>
                     </NavbarOffcanvas>
-                    </Container>
                 </Navbar>
 
                 <Link to="/"><h1>NC News</h1></Link>
@@ -31,7 +29,7 @@ function Header({login, setLogin, showForm, setShowForm, user, setUser}) {
                             <img src={user.avatar_url} className="avatar" alt={user.username} onClick={()=>setShowOffCanvas(true)}/>
                         </div>
 
-                        <Offcanvas show={showOffCanvas} onHide={()=>setShowOffCanvas(false)} placement="end" scroll={true} className="profile-canvas">
+                        <Offcanvas show={showOffCanvas} onHide={()=>setShowOffCanvas(false)} placement="end" scroll={true} className="canvas" id="profile-canvas">
                             <img src={user.avatar_url} className="profile-avatar"/>
                             <p className="username">{user.username}</p>
                             <p>to be added...</p>
